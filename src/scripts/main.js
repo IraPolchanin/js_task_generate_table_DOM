@@ -366,10 +366,10 @@ const visiblePeople = people.map((person) => ({
   century: Math.ceil(person.died / 100),
 }));
 
-for (let i = 0; i <= visiblePeople.length; ++i) {
+for (let i = 0; i < visiblePeople.length; ++i) {
   const row = dashboard.insertRow();
 
-  for (const c in visiblePeople[i]) {
+  for (const c of Object.keys(visiblePeople[i])) {
     row.insertCell().textContent = visiblePeople[i][c];
   }
 }
