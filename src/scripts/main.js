@@ -355,6 +355,21 @@ const people = [
 ];
 
 // eslint-disable-next-line no-console
-console.log(people); // you can remove it
+const dashboard = document.querySelector('.dashboard');
 
-// write your code here
+const visiblePeople = people.map((person) => ({
+  name: person.name,
+  sex: person.sex,
+  born: person.born,
+  died: person.died,
+  age: person.died - person.born,
+  century: Math.ceil(person.died / 100),
+}));
+
+for (let i = 0; i <= visiblePeople.length; ++i) {
+  const row = dashboard.insertRow();
+
+  for (const c in visiblePeople[i]) {
+    row.insertCell().textContent = visiblePeople[i][c];
+  }
+}
