@@ -355,21 +355,25 @@ const people = [
 ];
 
 // eslint-disable-next-line no-console
-const dashboard = document.querySelector('.dashboard');
+(() => {
+  const dashboard = document.querySelector('.dashboard');
 
-const visiblePeople = people.map((person) => ({
-  name: person.name,
-  sex: person.sex,
-  born: person.born,
-  died: person.died,
-  age: person.died - person.born,
-  century: Math.ceil(person.died / 100),
-}));
+  if (!dashboard) return;
 
-for (let i = 0; i < visiblePeople.length; ++i) {
-  const row = dashboard.insertRow();
+  const visiblePeople = people.map((person) => ({
+    name: person.name,
+    sex: person.sex,
+    born: person.born,
+    died: person.died,
+    age: person.died - person.born,
+    century: Math.ceil(person.died / 100),
+  }));
 
-  for (const c of Object.keys(visiblePeople[i])) {
-    row.insertCell().textContent = visiblePeople[i][c];
+  for (let i = 0; i < visiblePeople.length; ++i) {
+    const row = dashboard.insertRow();
+
+    for (const c of Object.keys(visiblePeople[i])) {
+      row.insertCell().textContent = visiblePeople[i][c];
+    }
   }
-}
+})();
